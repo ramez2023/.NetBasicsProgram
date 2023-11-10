@@ -13,9 +13,8 @@ namespace Task02
         public bool Exclude { get; set; }
 
         public FileSystemVisitorEventArgs(string path, bool abort) : this(path, abort, false) { }
-        public FileSystemVisitorEventArgs(string path) : this(path, false, false) { }
 
-        public FileSystemVisitorEventArgs(string path, bool abort, bool exclude)
+        public FileSystemVisitorEventArgs(string path, bool abort = false, bool exclude = false)
         {
             Path = path;
             Abort = abort;
