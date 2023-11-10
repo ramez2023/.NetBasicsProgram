@@ -1,2 +1,2 @@
-# .NetMentoringBasics
- .NET Mentoring Program Basics 2023 Q4
+# .NetBasicsProgram
+ .NET Basics Program Basics 2023 Q4
