@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp
+namespace Task02
 {
     public class FileSystemVisitorEventArgs : EventArgs
     {

@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp
+﻿namespace Task02
 {
     public class FileSystemVisitor
     {
@@ -40,7 +40,7 @@
         {
             foreach (var file in Directory.GetFiles(folder))
             {
-                var args = new FileSystemVisitorEventArgs(_rootFolder, false, true);
+                var args = new FileSystemVisitorEventArgs(file, false, false);
                 OnFileFound(args);
 
                 if (!args.Abort && _filter(file))
@@ -56,7 +56,7 @@
 
             foreach (var subfolder in Directory.GetDirectories(folder))
             {
-                var args = new FileSystemVisitorEventArgs(_rootFolder, false, true);
+                var args = new FileSystemVisitorEventArgs(subfolder, false, false);
                 OnDirectoryFound(args);
 
                 if (!args.Abort && _filter(subfolder))
@@ -80,9 +80,7 @@
 
         protected virtual void OnStart()
         {
-            EventHandler<FileSystemVisitorEventArgs> handler = Start;
-            if (handler != null)
-                handler(this, new FileSystemVisitorEventArgs(_rootFolder));
+            Start?.Invoke(this, new FileSystemVisitorEventArgs(_rootFolder));
         }
 
         protected virtual void OnFinish()
