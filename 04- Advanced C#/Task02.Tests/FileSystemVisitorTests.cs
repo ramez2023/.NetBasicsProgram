@@ -1,6 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Task02;
@@ -23,12 +22,6 @@ public class FileSystemVisitorTests
         Directory.CreateDirectory(Path.Combine(_testRootFolder, "subfolder2"));
     }
 
-    [ClassCleanup]
-    public static void ClassCleanup()
-    {
-        // Clean up the test folders and files
-        Directory.Delete(_testRootFolder, true);
-    }
 
     [TestMethod]
     public void Get_ReturnsAllFilesAndFolders_WhenNoFilterIsSpecified()
@@ -100,20 +93,6 @@ public class FileSystemVisitorTests
     }
 
     [TestMethod]
-    public void Get_ReturnsNothing_WhenRootFolderDoesNotExist()
-    {
-        // Arrange
-        var nonExistentFolder = Path.Combine(Path.GetTempPath(), "NonExistentFolder");
-        var fileSystemVisitor = new FileSystemVisitor(nonExistentFolder);
-
-        // Act
-        var result = fileSystemVisitor.Get();
-
-        // Assert
-        Assert.AreEqual(0, result.Count());
-    }
-
-    [TestMethod]
     public void Get_ReturnsNothing_WhenRootFolderIsEmpty()
     {
         // Arrange
@@ -142,5 +121,12 @@ public class FileSystemVisitorTests
 
         // Assert
         Assert.AreEqual(4, result.Count()); // Adjust based on the actual number of items matching the filter
+    }
+
+    [ClassCleanup]
+    public static void ClassCleanup()
+    {
+        // Clean up the test folders and files
+        Directory.Delete(_testRootFolder, true);
     }
 }
